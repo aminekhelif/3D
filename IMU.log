@@ -1,0 +1,429 @@
+----------------------------------------
+Time : 5.9 Sensor Data : [5.9 0.  0.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(1.0, 0.0, 0.0, 0.0)
+new_current_orientation : Quaternion(1.0, 0.0, 0.0, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [1. 0. 0.]
+y_axis : [0. 1. 0.]
+z_axis : [0. 0. 1.]
+new_x_axis : [1. 0. 0.]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0. 0. 1.]
+----------------------------------------
+Time : 6.0 Sensor Data : [6. 0. 9. 0. 0. 0. 0.]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(1.0, 0.0, 0.0, 0.0)
+new_current_orientation : Quaternion(0.9004471023526777, 0.0, 0.4349655341112288, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [1. 0. 0.]
+y_axis : [0. 1. 0.]
+z_axis : [0. 0. 1.]
+new_x_axis : [ 0.62160997  0.         -0.78332691]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.78332691 0.         0.62160997]
+----------------------------------------
+Time : 6.1000000000000005 Sensor Data : [6.1 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.9004471023526777, 0.0, 0.4349655341112288, 0.0)
+new_current_orientation : Quaternion(0.621609968270664, 0.0, 0.783326909627484, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.62160997  0.         -0.78332691]
+y_axis : [0. 1. 0.]
+z_axis : [0.78332691 0.         0.62160997]
+new_x_axis : [-0.90407214  0.         -0.42737988]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [ 0.42737988  0.         -0.90407214]
+----------------------------------------
+Time : 6.2 Sensor Data : [6.2 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.621609968270664, 0.0, 0.783326909627484, 0.0)
+new_current_orientation : Quaternion(0.21900668709304244, 0.0, 0.9757233578266589, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.90407214  0.         -0.42737988]
+y_axis : [0. 1. 0.]
+z_axis : [ 0.42737988  0.         -0.90407214]
+new_x_axis : [0.63469288 0.         0.77276449]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.77276449  0.          0.63469288]
+----------------------------------------
+Time : 6.300000000000001 Sensor Data : [6.3 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.21900668709304244, 0.0, 0.9757233578266589, 0.0)
+new_current_orientation : Quaternion(-0.2272020946930885, 0.0, 0.9738476308781949, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [0.63469288 0.         0.77276449]
+y_axis : [0. 1. 0.]
+z_axis : [-0.77276449  0.          0.63469288]
+new_x_axis : [-0.91113026  0.         -0.41211849]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [ 0.41211849  0.         -0.91113026]
+----------------------------------------
+Time : 6.4 Sensor Data : [6.4 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.2272020946930885, 0.0, 0.9738476308781949, 0.0)
+new_current_orientation : Quaternion(-0.628173622722739, 0.0, 0.7780731968879214, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.91113026  0.         -0.41211849]
+y_axis : [0. 1. 0.]
+z_axis : [ 0.41211849  0.         -0.91113026]
+new_x_axis : [ 0.59492066  0.         -0.80378443]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [ 0.80378443 -0.          0.59492066]
+----------------------------------------
+Time : 6.5 Sensor Data : [6.5 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.628173622722739, 0.0, 0.7780731968879214, 0.0)
+new_current_orientation : Quaternion(-0.9040721420170603, 0.0, 0.42737988023383156, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.59492066  0.         -0.80378443]
+y_axis : [0. 1. 0.]
+z_axis : [ 0.80378443 -0.          0.59492066]
+new_x_axis : [ 0.99872797 -0.         -0.05042269]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.05042269 0.         0.99872797]
+----------------------------------------
+Time : 6.6000000000000005 Sensor Data : [6.6 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.9040721420170603, 0.0, 0.42737988023383156, 0.0)
+new_current_orientation : Quaternion(-0.999964658471342, 0.0, -0.008407247367149264, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.99872797 -0.         -0.05042269]
+y_axis : [0. 1. 0.]
+z_axis : [0.05042269 0.         0.99872797]
+new_x_axis : [ 0.99773898  0.         -0.06720807]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.06720807 0.         0.99773898]
+----------------------------------------
+Time : 6.7 Sensor Data : [6.7 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.999964658471342, 0.0, -0.008407247367149264, 0.0)
+new_current_orientation : Quaternion(-0.8967584163341475, 0.0, -0.4425204432948515, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.99773898  0.         -0.06720807]
+y_axis : [0. 1. 0.]
+z_axis : [0.06720807 0.         0.99773898]
+new_x_axis : [ 0.55363493  0.         -0.83275949]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.83275949 0.         0.55363493]
+----------------------------------------
+Time : 6.800000000000001 Sensor Data : [6.8 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.8967584163341475, 0.0, -0.4425204432948515, 0.0)
+new_current_orientation : Quaternion(-0.6150023765255733, 0.0, -0.788525254426196, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.55363493  0.         -0.83275949]
+y_axis : [0. 1. 0.]
+z_axis : [0.83275949 0.         0.55363493]
+new_x_axis : [-0.94251949  0.         -0.33415118]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [ 0.33415118  0.         -0.94251949]
+----------------------------------------
+Time : 6.9 Sensor Data : [6.9 0.  9.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.6150023765255733, 0.0, -0.788525254426196, 0.0)
+new_current_orientation : Quaternion(-0.21079579943077992, 0.0, -0.977530117665097, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.94251949  0.         -0.33415118]
+y_axis : [0. 1. 0.]
+z_axis : [ 0.33415118  0.         -0.94251949]
+new_x_axis : [0.72104815 0.         0.69288495]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.69288495  0.          0.72104815]
+----------------------------------------
+Time : 7.0 Sensor Data : [7. 0. 0. 0. 0. 0. 0.]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.21079579943077992, 0.0, -0.977530117665097, 0.0)
+new_current_orientation : Quaternion(-0.21079579943077992, 0.0, -0.977530117665097, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [0.72104815 0.         0.69288495]
+y_axis : [0. 1. 0.]
+z_axis : [-0.69288495  0.          0.72104815]
+new_x_axis : [-0.3714181   0.         -0.92846572]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [ 0.92846572  0.         -0.3714181 ]
+----------------------------------------
+Time : 7.1000000000000005 Sensor Data : [7.1 0.  0.  0.  0.  0.  0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.21079579943077992, 0.0, -0.977530117665097, 0.0)
+new_current_orientation : Quaternion(-0.21079579943077992, 0.0, -0.977530117665097, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.3714181   0.         -0.92846572]
+y_axis : [0. 1. 0.]
+z_axis : [ 0.92846572  0.         -0.3714181 ]
+new_x_axis : [-0.04422762  0.          0.99902148]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.99902148  0.         -0.04422762]
+----------------------------------------
+Time : 5.9 Sensor Data : [5.9 0.  0.  0.  0.  0.  0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(1.0, 0.0, 0.0, 0.0)
+new_current_orientation : Quaternion(1.0, 0.0, 0.0, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [1. 0. 0.]
+y_axis : [0. 1. 0.]
+z_axis : [0. 0. 1.]
+new_x_axis : [1. 0. 0.]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0. 0. 1.]
+----------------------------------------
+Time : 6.0 Sensor Data : [6. 0. 9. 0. 0. 0. 0.]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(1.0, 0.0, 0.0, 0.0)
+new_current_orientation : Quaternion(0.9004471023526777, 0.0, 0.4349655341112288, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [1. 0. 0.]
+y_axis : [0. 1. 0.]
+z_axis : [0. 0. 1.]
+new_x_axis : [ 0.62160997  0.         -0.78332691]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.78332691 0.         0.62160997]
+----------------------------------------
+Time : 6.1000000000000005 Sensor Data : [ 6.1  0.  18.   0.   0.   0.   0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.9004471023526777, 0.0, 0.4349655341112288, 0.0)
+new_current_orientation : Quaternion(0.21900668709303844, 0.0, 0.9757233578266599, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.62160997  0.         -0.78332691]
+y_axis : [0. 1. 0.]
+z_axis : [0.78332691 0.         0.62160997]
+new_x_axis : [-0.89675842  0.          0.44252044]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.44252044  0.         -0.89675842]
+----------------------------------------
+Time : 6.2 Sensor Data : [ 6.2  0.  27.   0.   0.   0.   0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.21900668709303844, 0.0, 0.9757233578266599, 0.0)
+new_current_orientation : Quaternion(-0.9040721420170605, 0.0, 0.4273798802338314, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.89675842  0.          0.44252044]
+y_axis : [0. 1. 0.]
+z_axis : [-0.44252044  0.         -0.89675842]
+new_x_axis : [-0.91113026  0.         -0.41211849]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [ 0.41211849  0.         -0.91113026]
+----------------------------------------
+Time : 6.300000000000001 Sensor Data : [ 6.3  0.  36.   0.   0.   0.   0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.9040721420170605, 0.0, 0.4273798802338314, 0.0)
+new_current_orientation : Quaternion(-0.21079579943077187, 0.0, -0.9775301176650989, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.91113026  0.         -0.41211849]
+y_axis : [0. 1. 0.]
+z_axis : [ 0.41211849  0.         -0.91113026]
+new_x_axis : [0.66031671 0.         0.75098725]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.75098725  0.          0.66031671]
+----------------------------------------
+Time : 6.4 Sensor Data : [ 6.4  0.  45.   0.   0.   0.   0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.21079579943077187, 0.0, -0.9775301176650989, 0.0)
+new_current_orientation : Quaternion(0.8930063446890766, -0.0, 0.4500440737806176, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [0.66031671 0.         0.75098725]
+y_axis : [0. 1. 0.]
+z_axis : [-0.75098725  0.          0.66031671]
+new_x_axis : [ 0.99646791  0.         -0.08397446]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.08397446 0.         0.99646791]
+----------------------------------------
+Time : 6.5 Sensor Data : [ 6.5  0.  54.   0.   0.   0.   0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.8930063446890766, -0.0, 0.4500440737806176, 0.0)
+new_current_orientation : Quaternion(-0.9996819412301852, 0.0, -0.025219365143649922, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.99646791  0.         -0.08397446]
+y_axis : [0. 1. 0.]
+z_axis : [0.08397446 0.         0.99646791]
+new_x_axis : [ 0.99096615  0.         -0.13411223]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.13411223 0.         0.99096615]
+----------------------------------------
+Time : 6.6000000000000005 Sensor Data : [ 6.6  0.  63.   0.   0.   0.   0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.9996819412301852, 0.0, -0.025219365143649922, 0.0)
+new_current_orientation : Quaternion(0.9994345855010046, 0.0, 0.03362304722114432, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.99096615  0.         -0.13411223]
+y_axis : [0. 1. 0.]
+z_axis : [0.13411223 0.         0.99096615]
+new_x_axis : [ 0.97971213  0.         -0.20040992]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.20040992 0.         0.97971213]
+----------------------------------------
+Time : 6.7 Sensor Data : [ 6.7  0.  72.   0.   0.   0.   0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.9994345855010046, 0.0, 0.03362304722114432, 0.0)
+new_current_orientation : Quaternion(-0.881372490362237, 0.0, -0.472421986398462, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.97971213  0.         -0.20040992]
+y_axis : [0. 1. 0.]
+z_axis : [0.20040992 0.         0.97971213]
+new_x_axis : [ 0.3755096   0.         -0.92681851]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [0.92681851 0.         0.3755096 ]
+----------------------------------------
+Time : 6.800000000000001 Sensor Data : [ 6.8  0.  81.   0.   0.   0.   0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.881372490362237, 0.0, -0.472421986398462, 0.0)
+new_current_orientation : Quaternion(0.16952950915564208, 0.0, 0.9855251115651225, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [ 0.3755096   0.         -0.92681851]
+y_axis : [0. 1. 0.]
+z_axis : [0.92681851 0.         0.3755096 ]
+new_x_axis : [-0.66362261  0.          0.74806753]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.74806753  0.         -0.66362261]
+----------------------------------------
+Time : 6.9 Sensor Data : [ 6.9  0.  90.   0.   0.   0.   0. ]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.16952950915564208, 0.0, 0.9855251115651225, 0.0)
+new_current_orientation : Quaternion(0.9276443698605848, 0.0, -0.3734647547841141, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.66362261  0.          0.74806753]
+y_axis : [0. 1. 0.]
+z_axis : [-0.74806753  0.         -0.66362261]
+new_x_axis : [-0.99682859  0.          0.07957859]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.07957859  0.         -0.99682859]
+----------------------------------------
+Time : 7.0 Sensor Data : [ 7.  0. 90.  0.  0.  0.  0.]
+delta_t : 0.09999999999999964
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(0.9276443698605848, 0.0, -0.3734647547841141, 0.0)
+new_current_orientation : Quaternion(-0.5606165822201188, 0.0, -0.828075508477236, -0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [-0.99682859  0.          0.07957859]
+y_axis : [0. 1. 0.]
+z_axis : [-0.07957859  0.         -0.99682859]
+new_x_axis : [0.44412617 0.         0.89596425]
+new_y_axis : [-0.  1.  0.]
+new_z_axis : [-0.89596425  0.          0.44412617]
+----------------------------------------
+Time : 7.1000000000000005 Sensor Data : [ 7.1  0.  90.   0.   0.   0.   0. ]
+delta_t : 0.10000000000000053
+velocity : [0. 0. 0.]
+position : [0. 0. 0.]
+current_orientation : Quaternion(-0.5606165822201188, 0.0, -0.828075508477236, -0.0)
+new_current_orientation : Quaternion(-0.6912931286141135, 0.0, 0.7225744323811291, 0.0)
+linear_accel : [0. 0. 0.]
+new_velocity : [0. 0. 0.]
+new_position : [0. 0. 0.]
+x_axis : [0.44412617 0.         0.89596425]
+y_axis : [-0.  1.  0.]
+z_axis : [-0.89596425  0.          0.44412617]
+new_x_axis : [-0.91473018  0.          0.40406522]
+new_y_axis : [0. 1. 0.]
+new_z_axis : [-0.40406522  0.         -0.91473018]
+----------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
