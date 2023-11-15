@@ -7,6 +7,7 @@ from matplotlib.animation import FuncAnimation
 import time
 import logging
 import os
+import json
 from Data_Reader import read_sensor_data
 
 # Todo handle magnetometre later
@@ -87,6 +88,9 @@ class Quaternion:
     def __format__(self, __format_spec: str) -> str:
         return super().__format__(__format_spec)
     
+    def to_dict(self):
+        return {"w": self.w, "x": self.x, "y": self.y, "z": self.z}
+    
 def gyro_to_quaternion(gyro_data, delta_t):
     norm_gyro = np.linalg.norm(gyro_data)
 
@@ -115,66 +119,99 @@ class SensorDataProcessor:
     A class to process sensor data using IMU and quaternion calculations.
     """
     def __init__(self):
-        # self.current_orientation = Quaternion(1, 0, 0, 0)
+        self.current_orientation = Quaternion(1, 0, 0, 0)
         self.velocity = np.array([0.0, 0.0, 0.0])
         self.position = np.array([0.0, 0.0, 0.0])
+        self.xyzaxis = [np.array([1, 0, 0]), np.array([0, 1, 0]), np.array([0, 0, 1])]
+        self.frame_counter = {'count': 0}
         self.accelerations_history = []
+        self.gravity_vector = [0, 0, -9.88]
+        self.position_history = []
+        self.Start_IMU()
 
-    def process_sensor_data(self,current_orientation,current_axis, sensor_data, last_time):
-        # logging.info("Processing sensor data...")
-        current_time = sensor_data[0]
-        delta_t = current_time - last_time
-        
-        gyro_data = sensor_data[1:4]
-        accel_data = sensor_data[4:7]
-        x_axis , y_axis , z_axis = current_axis
-
-        gyro_quat = gyro_to_quaternion(gyro_data, delta_t)
-        # print("gyro_quat : ",gyro_quat)
-        # print("gyro_data : ",gyro_data)
-        # print("current_orientation : ",current_orientation)
-              
-        current_orientation = current_orientation * gyro_quat
-        # print("current_orientation : ",current_orientation)
-        x_axis = rotate_vector_by_quaternion(x_axis, gyro_quat)
-        y_axis = rotate_vector_by_quaternion(y_axis, gyro_quat)
-        z_axis = rotate_vector_by_quaternion(z_axis, gyro_quat)
-        current_axis = [x_axis,y_axis,z_axis]
-        # print("current_axis : ",current_axis)
-        # print("----------------------------------------\n")
         
         
-
-  
-        gravity_vector = [0, 0, -9.88]
-        gravity_in_sensor_frame = rotate_vector_by_quaternion(gravity_vector, current_orientation.conjugate())
-        linear_accel = accel_data #- gravity_in_sensor_frame
-
-        return current_axis,current_orientation,linear_accel, delta_t
-
-    def integrate_acceleration(self, linear_accel, delta_t):
-        self.accelerations_history.append(linear_accel)
+    def Start_IMU(self):
+        self.time ,self.gyro_x , self.gyro_y , self.gyro_z , self.accel_x , self.accel_y , self.accel_z = read_sensor_data(self.frame_counter['count'])
+        self.current_time = self.time
+        if not self.position_history:
+            self.last_time = self.time
+        self.delta_t = self.current_time - self.last_time
+        
+        self.gyro_data = [self.gyro_x , self.gyro_y , self.gyro_z]
+        self.accel_data = [self.accel_x , self.accel_y , self.accel_z]
+        
+        gyro_quat = gyro_to_quaternion(self.gyro_data, self.delta_t)
+        self.current_orientation = self.current_orientation * gyro_quat
+        self.xyzaxis = rotate_vector_by_quaternion(self.xyzaxis, gyro_quat)
+        self.gravity_vector = rotate_vector_by_quaternion([0, 0, -9.81], self.current_orientation.conjugate()) # check if conjugate is needed
+        self.linear_accel = rotate_vector_by_quaternion(self.accel_data, self.current_orientation.conjugate()) - self.gravity_vector
+        self.accelerations_history.append(self.linear_accel)
+        
         if len(self.accelerations_history) > 3:
-            self.accelerations_history.pop(0)  # Keep only the latest 3 accelerations
+            self.accelerations_history.pop(0)
+            
+        self.velocity, self.position = self.integrate_acceleration()
+        self.position_history.append(self.position)
+        self.last_time = self.current_time
+        self.frame_counter['count'] += 1
 
-        velocity, new_position = integrate_acceleration(self.accelerations_history, self.velocity, self.position, delta_t)
-        self.velocity = velocity
-        self.position = new_position
+        Data={  
+        "time " : self.time ,
+        "frame_counter " : self.frame_counter ,
+        "current_orientation " : self.current_orientation.to_dict() ,
+        "xyzaxis " : self.xyzaxis.tolist() ,
+        "linear_accel " : self.linear_accel.tolist() ,
+        "velocity " : self.velocity.tolist() ,
+        "position " : self.position.tolist() ,
+        "delta_t " : self.delta_t 
+        }
+        self.Save_log(Data)
+        return self.current_orientation , self.xyzaxis , self.linear_accel , self.velocity , self.position , self.delta_t , self.position_history , self.accelerations_history 
 
-        return velocity, new_position
 
+
+    def integrate_acceleration(self):
+        """
+        Intégration de l'accélération pour mettre à jour la vitesse et la position.
+        Utilise une méthode plus simple au début et passe à la méthode de Simpson lorsque suffisamment de données sont disponibles.
+        """
+        # logging.info("Integrating acceleration...")
+        if len(self.accelerations_history) < 3:
+            # Si moins de 3 points sont disponibles, utilisez une méthode plus simple
+            # Par exemple, méthode du point milieu ou du trapèze
+            new_velocity = self.velocity + self.accelerations_history[-1] * self.delta_t
+            new_position = self.position + new_velocity * self.delta_t
+        else:
+            # Utilisation de la méthode de Simpson
+            a_n_minus_1, a_n, a_n_plus_1 = self.accelerations_history[-3:]
+            new_velocity = self.velocity + (self.delta_t / 3) * (a_n_minus_1 + 4 * a_n + a_n_plus_1)
+            new_position = self.position + new_velocity * self.delta_t  # Ici, une méthode simple peut toujours être utilisée
+
+        return new_velocity, new_position
+    
+    @staticmethod
+    def Save_log(data):
+        file_path = "./log/log-{}.json".format(time.strftime("%Y-%m-%d-%H"))
+        try:
+            with open(file_path, 'r') as file:
+                file_data = json.load(file)
+                file_data.append(data)
+        except FileNotFoundError:
+            file_data = [data]
+
+        with open(file_path, 'w') as file:
+            json.dump(file_data, file, indent=4)
 
 
 class IMUVisualizer:
     def __init__(self, processor=SensorDataProcessor()):
         self.processor = processor
         self.fig, self.ax, self.line = self.init_plot()
-        self.positions_list = []
         self.quiver_objects = []
-        self.accelerations_history = []
-        self.xyzaxis = [np.array([1, 0, 0]), np.array([0, 1, 0]), np.array([0, 0, 1])]
         self.frame_counter = {'count': 0}
-        self.current_orientation = Quaternion(1, 0, 0, 0)
+        self.Reference_quiver_x = None
+
 
     def init_plot(self):
         logging.info("Initializing the plot...")
@@ -183,75 +220,19 @@ class IMUVisualizer:
         line, = ax.plot([], [], [], 'r-')  # 'r-' is the color and line style
         line.set_data([], [])   
         line.set_3d_properties([]) 
-        ax.set_xlim(-10, 10)  # Set the limits of the plot here
-        ax.set_ylim(-10, 10)
-        ax.set_zlim(-10, 10)
         ax.set_aspect('equal')
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')
+        
         return fig, ax, line
 
-    def update_plot(self, frame):
-        sensor_data = read_sensor_data(frame)  # This should return the latest frame of sensor data
-        print("sensor_data = ",sensor_data)
-        current_time = sensor_data[0]
-        with open("./Data.txt", "a") as f:  
-            f.write('Time : '+ str(current_time) +' Sensor Data : ' + str(sensor_data)+"\n")
-
-        # Initial conditions if this is the first frame
-        if not self.positions_list:
-            last_time = current_time
-            velocity = np.array([0.0, 0.0, 0.0])
-            position = np.array([0.0, 0.0, 0.0])
-            
-
-        else:
-            last_time = self.positions_list[-1][0]
-            velocity = self.positions_list[-1][1]
-            position = self.positions_list[-1][2]
-            self.current_orientation = self.positions_list[-1][3] #current quaternion
-            
-            
-        delta_t = current_time - last_time
-        try:
-            x_axis , y_axis , z_axis = self.xyzaxis
-             
-        except:
-            x_axis = np.array([1, 0, 0])
-            y_axis = np.array([0, 1, 0])
-            z_axis = np.array([0, 0, 1])
-            self.xyzaxis= [x_axis,y_axis,z_axis]
+    def update_plot(self):
         
-        with open("./Data.txt", "a") as f:
-            f.write('delta_t : '+ str(delta_t) +"\n")
-            f.write('velocity : '+ str(velocity) +"\n")
-            f.write('position : '+ str(position) +"\n")
-            # f.write('current_orientation : '+ str(current_orientation) +"\n")
-        
-        # Process sensor data to get current orientation and linear acceleration
-        self.xyzaxis,self.current_orientation, linear_accel, _ = self.processor.process_sensor_data(self.current_orientation,self.xyzaxis,sensor_data, last_time)
-        
-        with open("./Data.txt", "a") as f:
-            f.write('new_current_orientation : '+ str(self.current_orientation) +"\n")
-            f.write('linear_accel : '+ str(linear_accel) +"\n")
-        
-        # Store the acceleration data for Simpson's method
-        self.accelerations_history.append(linear_accel)
-        if len(self.accelerations_history) > 3:
-            self.accelerations_history.pop(0)  # Keep only the latest 3 accelerations
-
-        # Integrate acceleration to get new velocity and position
-        velocity, new_position = integrate_acceleration(self.accelerations_history, velocity, position, delta_t)
-        
-        with open("./Data.txt", "a") as f:
-            f.write('new_velocity : '+ str(velocity) +"\n")
-            f.write('new_position : '+ str(new_position) +"\n")
-        # Append the new position and other data to the list
-        self.positions_list.append((current_time, velocity, new_position, self.current_orientation))
+        self.processor.Start_IMU()
         
         # Update the line data for the plot
-        xs, ys, zs = zip(*[pos[2] for pos in self.positions_list])
+        xs, ys, zs = zip(*self.processor.position_history)
         self.line.set_data(np.array([xs, ys]))
         self.line.set_3d_properties(np.array(zs))
         
@@ -261,57 +242,49 @@ class IMUVisualizer:
         self.ax.set_zlim([min(zs) - padding, max(zs) + padding])
         self.ax.set_aspect('equal')
         
-        try:
-            x_axis , y_axis , z_axis = self.xyzaxis
-             
-        except:
-            x_axis = np.array([1, 0, 0])
-            y_axis = np.array([0, 1, 0])
-            z_axis = np.array([0, 0, 1])
-            
-        with open("./Data.txt", "a") as f:
-            f.write('x_axis : '+ str(x_axis) +"\n")
-            f.write('y_axis : '+ str(y_axis) +"\n")
-            f.write('z_axis : '+ str(z_axis) +"\n")
-            
-        # x_axis = rotate_vector_by_quaternion(x_axis, current_orientation)
-        # y_axis = rotate_vector_by_quaternion(y_axis, current_orientation)
-        # z_axis = rotate_vector_by_quaternion(z_axis, current_orientation)
         
-        with open("./Data.txt", "a") as f:
-            f.write('new_x_axis : '+ str(x_axis) +"\n")
-            f.write('new_y_axis : '+ str(y_axis) +"\n")
-            f.write('new_z_axis : '+ str(z_axis) +"\n")
-            f.write("----------------------------------------\n")
-        # Get the current limits of the plot
+        x_axis , y_axis , z_axis = self.processor.xyzaxis
+
         x_limits = self.ax.get_xlim3d()
         range = abs(x_limits[1] - x_limits[0])
+        axis_length = range/5 
+        
 
         
         # Update axes for the latest position
         if self.quiver_objects:
+            try:
+                Reference_quiver_x.remove()
+                Reference_quiver_y.remove()
+                Reference_quiver_z.remove()
+            except:
+                pass
             for quiv in self.quiver_objects:
                 quiv.remove()
-        
-        axis_length = range/5       
-        quiver_x = self.ax.quiver(*new_position, *x_axis, color='r', length=axis_length, normalize=True)
-        quiver_y = self.ax.quiver(*new_position, *y_axis, color='g', length=axis_length, normalize=True)
-        quiver_z = self.ax.quiver(*new_position, *z_axis, color='b', length=axis_length, normalize=True)
 
+        
+        Reference_quiver_x = self.ax.quiver(0,0,0,1,0,0, color='r', length=axis_length, normalize=True)
+        Reference_quiver_y = self.ax.quiver(0,0,0,0,1,0, color='g', length=axis_length, normalize=True)
+        Reference_quiver_z = self.ax.quiver(0,0,0,0,0,1, color='b', length=axis_length, normalize=True)
+        quiver_x = self.ax.quiver(*self.processor.position, *x_axis, color='r', length=axis_length, normalize=True)
+        quiver_y = self.ax.quiver(*self.processor.position, *y_axis, color='g', length=axis_length, normalize=True)
+        quiver_z = self.ax.quiver(*self.processor.position, *z_axis, color='b', length=axis_length, normalize=True)
+
+        
         self.quiver_objects[:] = [quiver_x, quiver_y, quiver_z]
-        self.xyzaxis[:] =[x_axis,y_axis,z_axis]
+        self.processor.xyzaxis[:] =[x_axis,y_axis,z_axis]
         
-        return self.line, self.quiver_objects, self.xyzaxis
+        return self.line, self.quiver_objects
 
 
 
-    def animate(self, i):
+    def animate(self,frame):
         if self.frame_counter['count'] >= 100:
             self.ani.event_source.stop()
             logging.info("Stopping the animation...")
             return self.line,
 
-        updated_line, self.quiver_objects , self.xyzaxis = self.update_plot(i)
+        updated_line, self.quiver_objects = self.update_plot()
         
         self.frame_counter['count'] += 1
         return updated_line
@@ -323,24 +296,8 @@ class IMUVisualizer:
 
 
 
-def integrate_acceleration(accelerations, velocity, position, delta_t):
-    """
-    Intégration de l'accélération pour mettre à jour la vitesse et la position.
-    Utilise une méthode plus simple au début et passe à la méthode de Simpson lorsque suffisamment de données sont disponibles.
-    """
-    # logging.info("Integrating acceleration...")
-    if len(accelerations) < 3:
-        # Si moins de 3 points sont disponibles, utilisez une méthode plus simple
-        # Par exemple, méthode du point milieu ou du trapèze
-        new_velocity = velocity + accelerations[-1] * delta_t
-        new_position = position + new_velocity * delta_t
-    else:
-        # Utilisation de la méthode de Simpson
-        a_n_minus_1, a_n, a_n_plus_1 = accelerations[-3:]
-        new_velocity = velocity + (delta_t / 3) * (a_n_minus_1 + 4 * a_n + a_n_plus_1)
-        new_position = position + new_velocity * delta_t  # Ici, une méthode simple peut toujours être utilisée
 
-    return new_velocity, new_position
+
 
        
 
